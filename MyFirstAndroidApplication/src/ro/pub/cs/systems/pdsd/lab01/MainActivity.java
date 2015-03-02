@@ -23,7 +23,15 @@ public class MainActivity extends Activity {
 		public void onClick(View view) {
 			EditText userNameEditText = (EditText)findViewById(R.id.user_name_edit_text);
 			TextView greetingTextView = (TextView)findViewById(R.id.greeting_text_view);
+			
+			String s = new String(getString(R.string.greeting_text_view_content));
+			greetingTextView.setText(s.replace("xxx", "\n"+userNameEditText.getText()));
 			greetingTextView.setAlpha(1);
+			
+	        AlphaAnimation fadeEffect = new AlphaAnimation(1.0f, 0.0f);
+	        fadeEffect.setDuration(TRANSPARENCY_EFFECT_DURATION);
+	        fadeEffect.setFillAfter(true);
+	        greetingTextView.setAnimation(fadeEffect);
 		}
 		
 	}
@@ -32,7 +40,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+         
         Button submitButton = (Button)findViewById(R.id.submit_button);
         submitButton.setOnClickListener(buttonClickListener);
     }
